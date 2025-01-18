@@ -1,0 +1,178 @@
+{
+	"info": {
+		"_postman_id": "207e2ace-7840-41ea-8664-fd4558ec2d57",
+		"name": "EStoreAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26068431",
+		"_collection_link": "https://solar-crater-700445.postman.co/workspace/Testing-Projects~599d6546-eaa3-4df4-99d9-8556949f8e3c/collection/26068431-207e2ace-7840-41ea-8664-fd4558ec2d57?action=share&source=collection_link&creator=26068431"
+	},
+	"item": [
+		{
+			"name": "getAllEVouchers",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczNzIxMjg3OSwiZXhwIjoxNzM3Mjk5Mjc5fQ.OKOsuWdGphBW6mXxmuKIApH2H6Pyr20BOe10VFIz3sQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8081/api/estore",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"estore"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getEVoucherDetail",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczNzE3NTgwNCwiZXhwIjoxNzM3MjYyMjA0fQ.aYoNYCAXTvvm5SIUTlBkXnQ-mS8IvcX1en5Am-QL6CA",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8081/api/estore?id=1",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"estore"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/savePaymentType",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczNzE3NTgwNCwiZXhwIjoxNzM3MjYyMjA0fQ.aYoNYCAXTvvm5SIUTlBkXnQ-mS8IvcX1en5Am-QL6CA",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": null,\r\n    \"paymentCode\": \"E-Voucher\",\r\n    \"description\": \"E Voucher\",\r\n    \"isActive\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/api/estore/savePaymentType",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"estore",
+						"savePaymentType"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/getAllPaymentTypes",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczNzIxMjg3OSwiZXhwIjoxNzM3Mjk5Mjc5fQ.OKOsuWdGphBW6mXxmuKIApH2H6Pyr20BOe10VFIz3sQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8081/api/estore/getAllPaymentTypes",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"estore",
+						"getAllPaymentTypes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/savePayment",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczNzIwODU5MCwiZXhwIjoxNzM3Mjk0OTkwfQ.vBkgrSSRdh4zZd8p6cHxNoCLW4cgoMLoGeT-GFkB9LU",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"totalAmount\": 24.0,\r\n  \"totalDisAmount\": 6.0,\r\n  \"details\": [\r\n    {\r\n      \"headerId\": null, // This will be linked after saving the header (optional for input).\r\n      \"evoucherId\": 1,\r\n      \"price\": 10.0,\r\n      \"quantity\": 3,\r\n      \"amount\": 24.0,\r\n      \"disAmount\": 6.0 // eVoucher amount / eVoucher Discount per voucher\r\n    }\r\n  ],\r\n  \"payment\": [\r\n    {\r\n      \"headerId\": null, // This will be linked after saving the header (optional for input).\r\n      \"paymentTypeId\": 1,\r\n      \"amount\": 24.0\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/api/estore/savePayment",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"estore",
+						"savePayment"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
