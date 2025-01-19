@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class PaymentService {
     @Autowired
@@ -30,7 +32,8 @@ public class PaymentService {
         if (payment.getDetails() != null) {
             for (PaymentDetails details : payment.getDetails()) {
                 details.setHeaderId(savedHeader.getId());
-                cmsService.deactiveEVoucher(details.getEvoucherId());
+                //cmsService.deactiveEVoucher(details.getEvoucherId());
+                cmsService.setUsedPromoCode(details.getPromoCodeId());
             }
             detailsRepository.saveAll(payment.getDetails());
         }
@@ -43,5 +46,13 @@ public class PaymentService {
             paymentRepository.saveAll(payment.getPayment());
         }
         return savedHeader;
+    }
+
+    public List<Long> getEVoucherIdsByPaymentHeaderId(Long headerId) {
+        return detailsRepository.findEVoucherIdsByPaymentHeaderId(headerId);
+    }
+
+    public List<PaymentHeader> getAllPayments() {
+        return headerRepository.findAll();
     }
 }

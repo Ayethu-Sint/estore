@@ -1,5 +1,6 @@
 package com.example.estore.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,9 +22,12 @@ public class PromoCode {
     private String promoCode;
     private String qrCodeImageUrl;
 
-    @ManyToOne
-    @JoinColumn(name = "voucher_id", nullable = false)
-    private EVoucher eVoucher;
+    @Column(name = "voucher_id", nullable = false)
+    @JsonIgnore
+    private Long voucherId;
     private Boolean used;
     private String phoneNumber; // To tie the promo code to a specific phone number
+
+    @Transient
+    private String imageBase64Code;
 }

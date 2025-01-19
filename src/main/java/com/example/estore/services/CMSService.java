@@ -1,6 +1,7 @@
 package com.example.estore.services;
 
 import com.example.estore.entities.EVoucher;
+import com.example.estore.models.PurchaseRequest;
 import com.example.estore.models.TokenResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,11 +75,38 @@ public class CMSService{
         // Step 1: Get the token from the getToken() method
         String token = getToken().getAccessToken(); // Get the token dynamically
 
-        return eVoucherApi(null).get()
-                .uri("/api/estore/{id}", id)
+        return eVoucherApi(null).post()
+                .uri("/api/estore?id={id}", id)
                 .header("Authorization", "Bearer " + token)  // Add the Bearer token here
                 .retrieve()
                 .bodyToMono(EVoucher.class)
+                .block();
+    }
+
+    public List<EVoucher> getEVoucherDetailByPurchase(List<Long> eVoucherIds, Boolean used) {
+        String token = getToken().getAccessToken();
+
+        PurchaseRequest requestBody = new PurchaseRequest();
+        requestBody.setEVoucherId(eVoucherIds);
+        requestBody.setUsed(used);
+        // Step 3: Make the API call
+        return eVoucherApi(null).post()
+                .uri("/api/estore/getEVoucher")
+                .header("Authorization", "Bearer " + token) // Add Bearer token
+                .bodyValue(requestBody) // Set the body
+                .retrieve()
+                .bodyToFlux(EVoucher.class) // Convert response to a list of EVoucher
+                .collectList() // Collect the response as a list
+                .block(); // Block for synchronous response (if required)
+    }
+
+    public String setUsedPromoCode(Long promoCodeId) {
+        String token = getToken().getAccessToken();
+        return eVoucherApi(null).get()
+                .uri("/api/cms?promoCodeId={promoCodeId}", promoCodeId)
+                .header("Authorization", "Bearer " + token)
+                .retrieve()
+                .bodyToMono(String.class)
                 .block();
     }
 

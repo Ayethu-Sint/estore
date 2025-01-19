@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Builder
@@ -40,4 +41,7 @@ public class EVoucher {
     private LocalDateTime updatedAt;
     @JsonProperty("is_active") // Map JSON field to entity field
     private Boolean isActive;
+
+    @Transient
+    private List<PromoCode> promoCodeList;
 }

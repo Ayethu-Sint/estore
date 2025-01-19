@@ -18,6 +18,7 @@ public class PaymentDetails {
     private Long id;
     private Long headerId;
     private Long evoucherId;
+    private Long promoCodeId;
     private Double price;
     private int quantity;
     private Double amount;

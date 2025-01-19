@@ -30,7 +30,7 @@ public class EStoreController {
         return eVoucherService.getAllEVouchers();
     }
 
-    @GetMapping("/{id}")
+    @PostMapping
     public EVoucher getEVoucherDetail(@RequestParam Long id) {
         return eVoucherService.getEVoucherDetail(id);
     }
@@ -51,5 +51,16 @@ public class EStoreController {
     public ResponseEntity<?> savePayment(@RequestBody PaymentHeader payment) {
         paymentService.savePayment(payment);
         return ResponseEntity.ok(payment);
+    }
+
+    @GetMapping("getAllPayments")
+    public List<PaymentHeader> getAllPayments() {
+        return paymentService.getAllPayments();
+    }
+
+    @GetMapping("getEVoucherDetailsByPayment")
+    public List<EVoucher> getEVoucherDetailsByPayment(@RequestParam Long id, @RequestParam Boolean isUsed) {
+        List<Long> eIds =  paymentService.getEVoucherIdsByPaymentHeaderId(id);
+        return eVoucherService.getEVoucherDetailByPurchase(eIds, isUsed);
     }
 }
