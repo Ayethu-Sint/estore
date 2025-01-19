@@ -8,7 +8,7 @@
 	},
 	"item": [
 		{
-			"name": "getAllEVouchers",
+			"name": "/getAllEVouchers",
 			"request": {
 				"auth": {
 					"type": "noauth"
@@ -36,16 +36,16 @@
 			"response": []
 		},
 		{
-			"name": "getEVoucherDetail",
+			"name": "/getEVoucherDetail",
 			"request": {
 				"auth": {
 					"type": "noauth"
 				},
-				"method": "GET",
+				"method": "POST",
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczNzE3NTgwNCwiZXhwIjoxNzM3MjYyMjA0fQ.aYoNYCAXTvvm5SIUTlBkXnQ-mS8IvcX1en5Am-QL6CA",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczNzIxMjg3OSwiZXhwIjoxNzM3Mjk5Mjc5fQ.OKOsuWdGphBW6mXxmuKIApH2H6Pyr20BOe10VFIz3sQ",
 						"type": "text"
 					}
 				],
@@ -79,7 +79,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczNzE3NTgwNCwiZXhwIjoxNzM3MjYyMjA0fQ.aYoNYCAXTvvm5SIUTlBkXnQ-mS8IvcX1en5Am-QL6CA",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczNzI3ODQxOCwiZXhwIjoxNzM3MzY0ODE4fQ.KO26rWgHcjcX_lLO2Aw_u4RqnAnZv0MbT6fyL3aXYHI",
 						"type": "text"
 					}
 				],
@@ -152,7 +152,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"totalAmount\": 24.0,\r\n  \"totalDisAmount\": 6.0,\r\n  \"details\": [\r\n    {\r\n      \"headerId\": null, // This will be linked after saving the header (optional for input).\r\n      \"evoucherId\": 1,\r\n      \"price\": 10.0,\r\n      \"quantity\": 3,\r\n      \"amount\": 24.0,\r\n      \"disAmount\": 6.0 // eVoucher amount / eVoucher Discount per voucher\r\n    }\r\n  ],\r\n  \"payment\": [\r\n    {\r\n      \"headerId\": null, // This will be linked after saving the header (optional for input).\r\n      \"paymentTypeId\": 1,\r\n      \"amount\": 24.0\r\n    }\r\n  ]\r\n}\r\n",
+					"raw": "{\r\n  \"totalAmount\": 24.0,\r\n  \"totalDisAmount\": 6.0,\r\n  \"details\": [\r\n    {\r\n      \"headerId\": null, // This will be linked after saving the header (optional for input).\r\n      \"evoucherId\": 3,\r\n      \"promoCodeId\": 6,\r\n      \"price\": 10.0,\r\n      \"quantity\": 3,\r\n      \"amount\": 24.0,\r\n      \"disAmount\": 6.0 // eVoucher amount / eVoucher Discount per voucher\r\n    }\r\n  ],\r\n  \"payment\": [\r\n    {\r\n      \"headerId\": null, // This will be linked after saving the header (optional for input).\r\n      \"paymentTypeId\": 1,\r\n      \"amount\": 24.0\r\n    }\r\n  ]\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -169,6 +169,86 @@
 						"api",
 						"estore",
 						"savePayment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/getAllPayments(Purchase History)",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczNzIxMjg3OSwiZXhwIjoxNzM3Mjk5Mjc5fQ.OKOsuWdGphBW6mXxmuKIApH2H6Pyr20BOe10VFIz3sQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8081/api/estore/getAllPayments",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"estore",
+						"getAllPayments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/getEVoucherDetailsByPayment?id=20&isUsed=false",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczNzIxMjg3OSwiZXhwIjoxNzM3Mjk5Mjc5fQ.OKOsuWdGphBW6mXxmuKIApH2H6Pyr20BOe10VFIz3sQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/api/estore/getEVoucherDetailsByPayment?id=3&isUsed=false",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"estore",
+						"getEVoucherDetailsByPayment"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "3"
+						},
+						{
+							"key": "isUsed",
+							"value": "false"
+						}
 					]
 				}
 			},
